@@ -5,23 +5,24 @@ security:
         Arca\UserBundle\Entity\User: bcrypt
 
     providers:
-        in_memory:
-            memory: ~
-        our_database_users:
-            entity: { class: UserBundle:User, property: username }
+        database:
+            entity: { class: UserBundle:User } #//, property: username
 
     firewalls:
-        # disables authentication for assets and the profiler, adapt it according to your needs
-        dev:
-            pattern: ^/(_(profiler|wdt)|css|images|js)/
-            security: false
+        secured_area:
+            pattern: ^/
+            form_login:
+                check_path: login_check
+                login_path: login_form
+            logout:
+                path: logout #rota pra deslogar
+                target: login  #rota que será enviado quando deslogar
+            anonymous: ~
+            switch_user: ~
+            #http_basic:
+            #    realm: "Secured Demo Area"
+            remember_me:
+                key: "Order 1138"
 
         main:
             anonymous: ~
-            # activate different ways to authenticate
-
-            # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
-            #http_basic: ~
-
-            # https://symfony.com/doc/current/security/form_login_setup.html
-            #form_login: ~
