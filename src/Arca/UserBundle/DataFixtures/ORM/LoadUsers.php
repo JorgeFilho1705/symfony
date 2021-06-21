@@ -22,6 +22,7 @@ class LoadUsers implements FixtureInterface, ContainerAwareInterface
         $user->setPassword($this->encodePassword($user, 'admin100'));
         $user->setRoles(array('ROLE_ADMIN'));
         $user->setEmail('jorge.filho@arcasolutions.com');
+        $user->setTelefone('(014) 99733-0760');
         $manager->persist($user);
         $manager->flush();
 

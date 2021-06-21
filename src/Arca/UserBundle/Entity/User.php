@@ -53,6 +53,13 @@ class User implements AdvancedUserInterface
     /**
      * @var string
      *
+     * @ORM\Column(name="telefone", type="string", length=255)
+     */
+    private $telefone;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="password", type="string", length=255)
      */
     private $password;
@@ -133,6 +140,23 @@ class User implements AdvancedUserInterface
     public function getEmail()
     {
         return $this->email;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTelefone()
+    {
+        return $this->telefone;
+    }
+
+    /**
+     * @param string $telefone
+     */
+    public function setTelefone(string $telefone)
+    {
+        $this->telefone = $telefone;
+        return $this;
     }
 
     /**

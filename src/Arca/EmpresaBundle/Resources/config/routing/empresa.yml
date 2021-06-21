@@ -19,6 +19,7 @@ empresa_edit:
     methods:  [GET, POST]
 
 empresa_delete:
-    path:     /{id}/delete
+    path:     /delete/{id}
     defaults: { _controller: "EmpresaBundle:Empresa:delete" }
-    methods:  DELETE
+    methods:  GET
+

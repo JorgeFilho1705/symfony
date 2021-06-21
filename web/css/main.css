@@ -68,25 +68,25 @@ input[type=text],input[type=password], select {
     padding:2px 5px;
     background-color: #fff;
 }
-.form-group{
-    width: 50%;
+.mb-2{
+    width: 100%;
     text-align: center;
     margin: 0 auto;
-    display: flex;
-    float: left;
-}
-#search_titulo{
-    width: 100%;
+    display: ruby;
 }
 .btn{
     background-color: #222222;
     color:#fff;
     margin-left: 10px;
 }
-.btn-float{
-    float: left;
-    top:3px;
-    position:relative;
+#tableSearch{
+    text-align: center;
+    width: 100%;
+    background-color: #fff;
+}
+#search_titulo{
+    width: 70%;
+    margin: 0 auto;
 }
 #resultados{
     width: 100%;
@@ -153,4 +153,8 @@ input[type=text],input[type=password], select {
     border-radius:5px;
     padding: 5px 10px;
     margin-bottom: 10px;
+}
+
+.action_icon{
+    width: 20px;
 }

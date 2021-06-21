@@ -18,7 +18,7 @@
                 <th>Cep</th>
                 <th>Cidade</th>
                 <th>Descricao</th>
-
+                <th></th>
                 <th></th>
             </tr>
         </thead>
@@ -33,9 +33,8 @@
                 <td>{{ empresa.cep }}</td>
                 <td>{{ empresa.cidade }}/{{ empresa.estado }}</td>
                 <td>{{ empresa.descricao }}</td>
-                <td>
-                   <a href="{{ path('empresa_edit', { 'id': empresa.id }) }}" class="btn">edit</a>
-                </td>
+                <td><a href="{{ path('empresa_edit', { 'id': empresa.id }) }}"><img src="{{ asset('images/edit-icon.png') }}" class="action_icon"></a></td>
+                <td><a href="{{ path('empresa_delete', { 'id': empresa.id }) }}"><img src="{{ asset('images/delete-icon.png') }}" class="action_icon"></a></td>
             </tr>
         {% endfor %}
         </tbody>

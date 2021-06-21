@@ -1,22 +1,31 @@
-# To get started with security, check out the documentation:
-# https://symfony.com/doc/current/security.html
 security:
     encoders:
+        #Symfony\Component\Security\Core\User\User: plaintext
         Arca\UserBundle\Entity\User: bcrypt
+
+    role_hierarchy:
+        ROLE_USER:       [ROLE_EMPRESA_CREATE]
+        ROLE_ADMIN:       [ROLE_USER, ROLE_EVENT_CREATE]
+        ROLE_SUPER_ADMIN: [ ROLE_USER ,  ROLE_ADMIN ,  ROLE_ALLOWED_TO_SWITCH ]
 
     providers:
         database:
-            entity: { class: UserBundle:User } #//, property: username
+            entity: { class: UserBundle:User} #//, property: username
+        #in_memory:
+        #    memory:
+        #        users:
+        #            user:  { password: userpass, roles: [ 'ROLE_USER' ] } #já deixa definido um usuário pra entrar do tipo user
+        #            admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] } #já deixa definido um usuário pra entrar do tipo admin
 
     firewalls:
         secured_area:
-            pattern: ^/
+            pattern:    ^/
             form_login:
                 check_path: login_check
                 login_path: login_form
             logout:
-                path: logout #rota pra deslogar
-                target: login  #rota que será enviado quando deslogar
+                path:   logout #rota pra deslogar
+                target: index  #rota que será enviado quando deslogar
             anonymous: ~
             switch_user: ~
             #http_basic:
@@ -24,5 +33,7 @@ security:
             remember_me:
                 key: "Order 1138"
 
-        main:
-            anonymous: ~
+    access_control:
+        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/(css|js), roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/empresa, roles: ROLE_ADMIN }

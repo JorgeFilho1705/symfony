@@ -8,8 +8,12 @@
     </div>
     <div id="conteudo">
         {{ form_start(form) }}
-          {{ form_row(form.titulo) }}
-          <button type="submit" class="btn btn-float">Procurar</button>
+           <div style="text-align: center;">
+                <div class="form-group mb-2" align="center">
+                    {{ form_widget(form.titulo) }}
+                    <button type="submit" class="btn btn-float">Procurar</button>
+                </div>
+           </div>
         {{ form_end(form) }}
 
         <div id="resultados">
