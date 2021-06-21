@@ -4,25 +4,27 @@
 
 <div id="container">
     <div id="header">
-        <div id="title">Businnes Finder</div>
+        <div id="title">Busca</div>
     </div>
     <div id="conteudo">
-            {{ form_start(form) }}
-              {{ form_row(form.titulo) }}
-              <button type="submit" class="btn btn-float">Procurar</button>
-            {{ form_end(form) }}
+        {{ form_start(form) }}
+          {{ form_row(form.titulo) }}
+          <button type="submit" class="btn btn-float">Procurar</button>
+        {{ form_end(form) }}
 
-         <div id="resultados">
+        <div id="resultados">
             {% for empresa in empresas %}
                 <div class="result">
-                  <a href="{{ path('search', { 'id': empresa.id }) }}" class="titulo">{{ empresa.titulo }}</a>
-                  <div class="descricao">
-                      <span>{{ empresa.endereco }} - {{ empresa.cidade }}/{{ empresa.estado }}</span><br>
-                      <span>{{ empresa.descricao }}</span>
-                  </div>
+                    <fieldset>
+                        <a href="{{ path('search', { 'id': empresa.id }) }}" class="titulo">{{ empresa.titulo }}</a>
+                        <div class="descricao">
+                            <span>{{ empresa.endereco }} - {{ empresa.cidade }}/{{ empresa.estado }}</span><br>
+                            <span>{{ empresa.descricao }}</span>
+                        </div>
+                    </fieldset>
                 </div>
             {% endfor %}
-         </div>
+        </div>
     </div>
 </div>>
 {% endblock %}

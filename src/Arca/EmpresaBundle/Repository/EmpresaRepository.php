@@ -10,4 +10,15 @@ namespace Arca\EmpresaBundle\Repository;
  */
 class EmpresaRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findSearch($search)
+    {
+        return $this->createQueryBuilder('e')
+            ->andWhere('e.titulo LIKE :titulo OR e.endereco LIKE :endereco OR e.cep LIKE :cep OR e.cidade LIKE :cidade')
+            ->setParameter('titulo', '%'.$search.'%')
+            ->setParameter('endereco', '%'.$search.'%')
+            ->setParameter('cidade', '%'.$search.'%')
+            ->setParameter('cep', '%'.$search.'%')
+            ->getQuery()
+            ->execute();
+    }
 }

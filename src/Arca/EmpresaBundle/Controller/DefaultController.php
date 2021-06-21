@@ -25,11 +25,11 @@ class DefaultController extends Controller
         $form = $this->createForm(SearchType::class, $search);
         $form->handleRequest($request);
 
-        $em = $this->getDoctrine()->getManager();
-        $empresas = $em->getRepository('EmpresaBundle:Empresa')->findAll();
+        $empresas = [];
         if ($form->isValid()) {
-            //echo $search->getTitulo(); die;
-
+            $em = $this->getDoctrine()->getManager();
+            $empresas = $em->getRepository('EmpresaBundle:Empresa')
+                           ->findSearch($search->getTitulo());
         }
 
         return $this->render('index/index.html.twig', array(

@@ -4,17 +4,21 @@
 
 <div id="container">
     <div id="header">
-        <div id="title">{{ empresa.titulo }}</div>
+        <div id="title">Resultado</div>
     </div>
     <div id="conteudo">
         <div id="resultados">
-            <div class="result">
-                {{ empresa.titulo }}
-                <div class="descricao">
-                    <span>{{ empresa.endereco }} - {{ empresa.cidade }}/{{ empresa.estado }}</span><br>
-                    <span>{{ empresa.descricao }}</span>
+                <div class="result">
+                    <fieldset>
+                        <h4>{{ empresa.titulo }}</h4>
+                        <div class="descricao">
+                            <span><b>Telefone: </b>{{ empresa.telefone }}</span><br>
+                            <span><b>Endereço: </b>{{ empresa.endereco }} - {{ empresa.cidade }}/{{ empresa.estado }} - CEP {{ empresa.cep }}</span><br>
+                            <span><b>Descrição: </b>{{ empresa.descricao }}</span>
+                        </div>
+                    </fieldset>
                 </div>
-            </div>
-    </div>
+            <a href="{{ path('index') }}" class="btn">voltar</a>
+        </div>
 </div>>
 {% endblock %}
