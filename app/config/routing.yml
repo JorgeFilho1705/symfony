@@ -1,9 +1,11 @@
-app:
-    resource: '@AppBundle/Controller/'
-    type: annotation
-
+empresa:
+    resource: "@EmpresaBundle/Resources/config/routing.yml"
+    prefix:   /
 user_routes:
     prefix:   /
     resource: "@UserBundle/Controller"
+index_routes:
+    prefix:   /
+    resource: "@EmpresaBundle/Controller"
 
 

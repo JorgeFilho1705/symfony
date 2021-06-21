@@ -19,6 +19,7 @@ class AppKernel extends Kernel
             new Arca\UserBundle\UserBundle(),
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
+            new Arca\EmpresaBundle\EmpresaBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {

@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div id="container">
+        <div id="header">
+            <div id="title">Listagem das Empresas</div>
+            <div id="btn_cadastro"><a href="{{ path('empresa_new') }}">+</a></div>
+        </div>
+        <div id="conteudo">
+    <table id="tables">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titulo</th>
+                <th>Categoria</th>
+                <th>Telefone</th>
+                <th>Endereco</th>
+                <th>Cep</th>
+                <th>Cidade</th>
+                <th>Descricao</th>
+
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for empresa in empresas %}
+            <tr>
+                <td><a href="{{ path('empresa_show', { 'id': empresa.id }) }}">{{ empresa.id }}</a></td>
+                <td>{{ empresa.titulo }}</td>
+                <td>{{ empresa.categoria.categoria }}</td>
+                <td>{{ empresa.telefone }}</td>
+                <td>{{ empresa.endereco }}</td>
+                <td>{{ empresa.cep }}</td>
+                <td>{{ empresa.cidade }}/{{ empresa.estado }}</td>
+                <td>{{ empresa.descricao }}</td>
+                <td>
+                   <a href="{{ path('empresa_edit', { 'id': empresa.id }) }}" class="btn">edit</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+{% endblock %}

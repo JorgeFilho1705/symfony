@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div id="container">
+    <div id="header">
+        <div id="title">{{ empresa.titulo }}</div>
+    </div>
+    <div id="conteudo">
+        <div id="resultados">
+            <div class="result">
+                {{ empresa.titulo }}
+                <div class="descricao">
+                    <span>{{ empresa.endereco }} - {{ empresa.cidade }}/{{ empresa.estado }}</span><br>
+                    <span>{{ empresa.descricao }}</span>
+                </div>
+            </div>
+    </div>
+</div>>
+{% endblock %}
