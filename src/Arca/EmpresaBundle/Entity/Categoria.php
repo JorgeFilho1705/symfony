@@ -30,14 +30,7 @@ class Categoria
      */
     private $categoria;
 
-    /**
-     * @ORM\OneToMany(targetEntity="Arca\EmpresaBundle\Entity\Empresa", mappedBy="categoria")
-     */
-    private $empresas;
-    public function __construct()
-    {
-        $this->empresas = new ArrayCollection();
-    }
+
     /**
      * Get id
      *
@@ -70,18 +63,6 @@ class Categoria
     public function getCategoria()
     {
         return $this->categoria;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getEmpresas()
-    {
-        return $this->empresas;
-    }
-    public function __toString()
-    {
-        return (string) $this->getEmpresas();
     }
 }
 

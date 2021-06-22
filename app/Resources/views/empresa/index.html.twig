@@ -14,13 +14,12 @@
             <div id="buttonAction"><a href="{{ path('empresa_new') }}"><img src="{{ asset('images/add-icon.png') }}" class="action_icon" title="Nova Empresa"/></a></div>
         </div>
         <div id="conteudo">
-            {% if empresas is not defined %}
+
             <table id="tables">
                 <thead>
                     <tr>
                         <th>Id</th>
                         <th>Titulo</th>
-                        <th>Categoria</th>
                         <th>Telefone</th>
                         <th>Endereco</th>
                         <th>Cep</th>
@@ -35,7 +34,6 @@
                     <tr>
                         <td><a href="{{ path('empresa_show', { 'id': empresa.id }) }}">{{ empresa.id }}</a></td>
                         <td>{{ empresa.titulo }}</td>
-                        <td>{{ empresa.categoria.categoria }}</td>
                         <td>{{ empresa.telefone }}</td>
                         <td>{{ empresa.endereco }}</td>
                         <td>{{ empresa.cep }}</td>
@@ -47,11 +45,7 @@
                 {% endfor %}
                 </tbody>
             </table>
-            {% else %}
-                <div id="msgEmpresa">
-                    <b>Nenhuma empresa encontrada!</b>
-                </div>
-            {% endif %}
+
         </div>
     </div>
 {% endblock %}

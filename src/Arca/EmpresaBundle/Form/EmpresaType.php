@@ -3,8 +3,11 @@
 namespace Arca\EmpresaBundle\Form;
 
 use Arca\EmpresaBundle\Entity\Categoria;
+use Arca\EmpresaBundle\Entity\Empresa;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -18,25 +21,27 @@ class EmpresaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('titulo')
-            ->add('categoria', EntityType::class, [
+            ->add('categorias', EntityType::class, [
                 'class' => Categoria::class,
                 'query_builder' => function (EntityRepository $er) {
-                                   return $er->createQueryBuilder('c')
-                                             ->orderBy('c.categoria', 'ASC');
+                    return $er->createQueryBuilder('c')
+                        ->orderBy('c.categoria', 'ASC');
                 },
                 'choice_label' => 'categoria',
+                'multiple' => true,
+                'expanded' => true,
             ])
             ->add('telefone')
             ->add('endereco')
-            ->add('cep')
+            ->add('cep',  TextType::class, array(
+                'label' => 'CEP')
+            )
             ->add('cidade')
             ->add('estado', ChoiceType::class, [
                 'choices'  => $this->GetEstados(),
             ])
-            ->add('descricao');
-
-        $estados = array( "AC", "AL", "AM", "AP", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RO", "RS", "RR", "SC", "SE", "SP", "TO" );
-    }
+            ->add('descricao', TextareaType::class);
+ }
     /**
      * {@inheritdoc}
      */

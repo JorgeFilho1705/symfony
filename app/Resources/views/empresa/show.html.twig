@@ -4,6 +4,9 @@
 <div id="container">
     <div id="header">
         <div id="title">Empresas</div>
+        <div id="buttonAction">
+            <a href="{{ path('empresa_index') }}"><img src="{{ asset('images/back-icon.png') }}" class="action_icon" title="Voltar"/></a>
+        </div>
     </div>
     <div id="conteudo">
 
@@ -19,7 +22,11 @@
             </tr>
             <tr>
                 <th>Categoria</th>
-                <td>{{ empresa.categoria.categoria }}</td>
+                <td>
+                  {% for categoria in empresa.categorias %}
+                        {{ categoria.categoria }}
+                  {% endfor %}
+                </td>
             </tr>
             <tr>
                 <th>Telefone</th>

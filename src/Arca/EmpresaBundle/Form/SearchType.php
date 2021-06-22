@@ -14,7 +14,9 @@ class SearchType extends AbstractType
         $builder->add('titulo', TextType::class, array(
                            'label' => ' ',
                            'attr' => array(
-                                     'placeholder' => 'Search')
+                                       'placeholder' => 'Search',
+                                       'autofocus' => true
+                                     )
                            )
                       );
 

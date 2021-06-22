@@ -3,6 +3,7 @@
 namespace Arca\EmpresaBundle\Entity;
 
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Arca\EmpresaBundle\Entity\Categoria;
 /**
@@ -23,16 +24,6 @@ class Empresa
     private $id;
 
     /**
-     * @ORM\ManyToOne(
-     *      targetEntity="Arca\EmpresaBundle\Entity\Categoria",
-     *      inversedBy="empresa"
-     * )
-     * @ORM\JoinColumn(onDelete="CASCADE")
-     */
-    protected $categoria;
-
-
-    /**
      * @var string
      *
      * @ORM\Column(name="titulo", type="string", length=255)
@@ -42,7 +33,7 @@ class Empresa
     /**
      * @var string
      *
-     * @ORM\Column(name="telefone", type="string", length=255)
+     * @ORM\Column(name="telefone", type="string", length=16)
      */
     private $telefone;
 
@@ -77,11 +68,23 @@ class Empresa
     /**
      * @var string
      *
-     * @ORM\Column(name="descricao", type="string", length=255)
+     * @ORM\Column(name="descricao", type="text")
      */
     private $descricao;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="Arca\EmpresaBundle\Entity\Categoria")
+     * @ORM\JoinTable(
+     *      joinColumns={@ORM\JoinColumn(onDelete="CASCADE")},
+     *      inverseJoinColumns={@ORM\JoinColumn(onDelete="CASCADE")}
+     * )
+     */
+    private $categorias;
 
+    public function __construct()
+    {
+        $this->categorias = new ArrayCollection();
+    }
     /**
      * Get id
      *
@@ -259,25 +262,20 @@ class Empresa
     {
         return $this->descricao;
     }
-
-    /**
-     * @return mixed
-     */
-    public function getCategoria()
-    {
-        return $this->categoria;
-    }
-
-    /**
-     * @param mixed $categoria
-     */
-    public function setCategoria(Categoria $categoria)
-    {
-        $this->categoria = $categoria;
-    }
     public function __toString()
     {
         return (string) $this->getTitulo();
+    }
+
+    public function setCategorias($categoria)
+    {
+        $this->categorias[] = $categoria;
+
+        return $this;
+    }
+    public function getCategorias()
+    {
+        return $this->categorias;
     }
 
 }

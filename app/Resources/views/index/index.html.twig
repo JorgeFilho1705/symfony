@@ -1,20 +1,19 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-
 <div id="container">
     <div id="header">
-        <div id="title">Procure uma empresa</div>
+        <div id="title"></div>
         <div id="buttonAction">
             <a href="{{ path('login_form') }}"><img src="{{ asset('images/login-icon.png') }}" title="Área Restrita" class="action_icon"></a>
         </div>
     </div>
     <div id="conteudo">
         {{ form_start(form) }}
-           <div style="text-align: center;">
+           <div style="text-align: center;margin:30px; position: relative;">
                 <div class="form-group mb-2" align="center">
                     {{ form_widget(form.titulo) }}
-                    <button type="submit" class="btn btn-float">Pesquisar</button>
+                    <button type="submit" class="btn btn-pesquisar" style="border-radius: 0px 5px 5px 0px">Pesquisar</button>
                 </div>
            </div>
         {{ form_end(form) }}
@@ -35,3 +34,5 @@
     </div>
 </div>>
 {% endblock %}
+
+{% block javascripts %}{% endblock %}

@@ -8,9 +8,8 @@ body {
 
 #container{
     width: 100%;
-    top:130px;
+    top:110px;
     position: relative;
-
 }
 #header{
     width: 100%;
@@ -53,7 +52,7 @@ body {
     position: relative;
 }
 #conteudo{
-    background-color: #FFFF00;
+    background-color: rgba(255, 0, 0, 0.2);
     min-height:390px;
     padding: 10px;
 }
@@ -97,8 +96,15 @@ input[type=text],input[type=password], select {
 .btn{
     background-color: #222222;
     color:#fff;
-    margin-left: 10px;
 }
+.btn-pesquisar{
+    background-color: #222222;
+    color:#fff;
+    margin-left: -90px;
+    height: 35px;
+    margin-top:-2px;
+}
+
 #tableSearch{
     text-align: center;
     width: 100%;

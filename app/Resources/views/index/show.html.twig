@@ -4,21 +4,29 @@
 
 <div id="container">
     <div id="header">
-        <div id="title">Resultado</div>
+        <div id="title"></div>
+        <div id="buttonAction">
+            <a href="{{ path('index') }}"><img src="{{ asset('images/back-icon.png') }}" class="action_icon" title="Voltar"/></a>
+        </div>
     </div>
     <div id="conteudo">
         <div id="resultados">
                 <div class="result">
                     <fieldset>
                         <h4>{{ empresa.titulo }}</h4>
-                        <div class="descricao">
+                        <br class="descricao">
                             <span><b>Telefone: </b>{{ empresa.telefone }}</span><br>
                             <span><b>Endereço: </b>{{ empresa.endereco }} - {{ empresa.cidade }}/{{ empresa.estado }} - CEP {{ empresa.cep }}</span><br>
-                            <span><b>Descrição: </b>{{ empresa.descricao }}</span>
-                        </div>
+                            <span><b>Descrição: </b>{{ empresa.descricao }}</span></br>
+                            <span><b>Categoria: </b>
+                                {% for categoria in empresa.categorias %}
+                                    {{ categoria.categoria }}
+                                {% endfor %}
+                            </span>
                     </fieldset>
                 </div>
-            <a href="{{ path('index') }}" class="btn">voltar</a>
+                <a href="{{ path('index') }}" class="btn">voltar</a>
         </div>
-</div>>
+    </div>
+</div>
 {% endblock %}
