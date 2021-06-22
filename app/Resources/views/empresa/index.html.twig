@@ -1,43 +1,57 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    <div id="Logout">
+        <a href="{{ path('logout') }}" class="link" title="Sair">
+            <img src="{{ asset('images/login-icon.png') }}" class="action_icon"/>
+            <span id="spanLogout">Sair</span>
+        </a>
+    </div>
     <div id="container">
+
         <div id="header">
             <div id="title">Listagem das Empresas</div>
-            <div id="btn_cadastro"><a href="{{ path('empresa_new') }}">+</a></div>
+            <div id="buttonAction"><a href="{{ path('empresa_new') }}"><img src="{{ asset('images/add-icon.png') }}" class="action_icon" title="Nova Empresa"/></a></div>
         </div>
         <div id="conteudo">
-    <table id="tables">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Titulo</th>
-                <th>Categoria</th>
-                <th>Telefone</th>
-                <th>Endereco</th>
-                <th>Cep</th>
-                <th>Cidade</th>
-                <th>Descricao</th>
-                <th></th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for empresa in empresas %}
-            <tr>
-                <td><a href="{{ path('empresa_show', { 'id': empresa.id }) }}">{{ empresa.id }}</a></td>
-                <td>{{ empresa.titulo }}</td>
-                <td>{{ empresa.categoria.categoria }}</td>
-                <td>{{ empresa.telefone }}</td>
-                <td>{{ empresa.endereco }}</td>
-                <td>{{ empresa.cep }}</td>
-                <td>{{ empresa.cidade }}/{{ empresa.estado }}</td>
-                <td>{{ empresa.descricao }}</td>
-                <td><a href="{{ path('empresa_edit', { 'id': empresa.id }) }}"><img src="{{ asset('images/edit-icon.png') }}" class="action_icon"></a></td>
-                <td><a href="{{ path('empresa_delete', { 'id': empresa.id }) }}"><img src="{{ asset('images/delete-icon.png') }}" class="action_icon"></a></td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            {% if empresas is not defined %}
+            <table id="tables">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Titulo</th>
+                        <th>Categoria</th>
+                        <th>Telefone</th>
+                        <th>Endereco</th>
+                        <th>Cep</th>
+                        <th>Cidade</th>
+                        <th>Descricao</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for empresa in empresas %}
+                    <tr>
+                        <td><a href="{{ path('empresa_show', { 'id': empresa.id }) }}">{{ empresa.id }}</a></td>
+                        <td>{{ empresa.titulo }}</td>
+                        <td>{{ empresa.categoria.categoria }}</td>
+                        <td>{{ empresa.telefone }}</td>
+                        <td>{{ empresa.endereco }}</td>
+                        <td>{{ empresa.cep }}</td>
+                        <td>{{ empresa.cidade }}/{{ empresa.estado }}</td>
+                        <td>{{ empresa.descricao }}</td>
+                        <td><a href="{{ path('empresa_edit', { 'id': empresa.id }) }}"><img src="{{ asset('images/edit-icon.png') }}" class="action_icon" title="Editar Empresa"/></a></td>
+                        <td><a href="{{ path('empresa_delete', { 'id': empresa.id }) }}"><img src="{{ asset('images/delete-icon.png') }}" class="action_icon" title="Excluir Empresa"></a></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+                <div id="msgEmpresa">
+                    <b>Nenhuma empresa encontrada!</b>
+                </div>
+            {% endif %}
+        </div>
     </div>
 {% endblock %}

@@ -5,6 +5,7 @@ body {
     background-position: 55px 20px, 0 0;
     font-family: Open Sans;
 }
+
 #container{
     width: 100%;
     top:130px;
@@ -18,19 +19,38 @@ body {
     border-bottom: 1px solid #000;
 }
 #title{
-    padding:5px 0px 0px 20px;
+    padding:8px;
     float:left;
     color:#fff;
     font-weight: bold;
 }
-#btn_cadastro{
+#area_administrativa{
+    padding:5px;
+    float:right;
+    color:#fff;
+}
+#img_entrar{
+    background-image: url(../images/login-icon.png);
+    background-size: 20px;
+    background-repeat: no-repeat;
+    left:10px;
+    position: relative;
+}
+#buttonAction{
     padding:1px 5px;
     float:right;
-    font-family: "Arial Black";
     font-size:25px;
     top:-5px;
     position: relative;
     color:#fff;
+}
+#Logout{
+    text-align:right;
+    padding: 10px;
+}
+#spanLogout{
+    top:3px;
+    position: relative;
 }
 #conteudo{
     background-color: #FFFF00;
@@ -154,7 +174,16 @@ input[type=text],input[type=password], select {
     padding: 5px 10px;
     margin-bottom: 10px;
 }
-
 .action_icon{
     width: 20px;
+}
+#msgEmpresa{
+    text-align: center;top:10px;position: relative;
+}
+.link{
+    color: #fff;
+}
+.link:hover{
+    color: #fff;
+    text-decoration:none;
 }

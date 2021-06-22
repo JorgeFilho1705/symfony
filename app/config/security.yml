@@ -23,6 +23,7 @@ security:
             form_login:
                 check_path: login_check
                 login_path: login_form
+                default_target_path: /empresa
             logout:
                 path:   logout #rota pra deslogar
                 target: index  #rota que será enviado quando deslogar
