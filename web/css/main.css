@@ -1,17 +1,23 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 body {
-    background-image: url(../images/logo.svg), url(../images/bg.jpg);
-    background-repeat: no-repeat, repeat;
-    background-position: 55px 20px, 0 0;
+    background-image:url(../images/bg-background.png);
+    background-repeat: no-repeat;
     font-family: Open Sans;
+    background-attachment: fixed;
+    background-size: 100%;
 }
-
+#logo{
+    background-image: url(../images/logo.svg);
+    background-repeat: no-repeat;
+    height: 100px;
+    background-size: 250px;
+    background-position: 10px 18px;
+    background-color: #000;
+}
 #container{
     width: 100%;
-    top:110px;
-    position: relative;
 }
-#header{
+#menu{
     width: 100%;
     height: 30px;
     background-color: #161616;
@@ -44,17 +50,34 @@ body {
     color:#fff;
 }
 #Logout{
-    text-align:right;
+    float:right;
     padding: 10px;
+    width:100%;
+    text-align:right;
+    top:-114px;
+    position:absolute;
+}
+#idFiltro{
+    margin:10px;
+    position:relative;
 }
 #spanLogout{
     top:3px;
     position: relative;
 }
 #conteudo{
-    background-color: rgba(255, 0, 0, 0.2);
-    min-height:390px;
-    padding: 10px;
+    min-height:350px;
+    padding:20px;
+}
+#search-index{
+    text-align: center;
+    margin:30px;
+    position: relative;
+}
+
+#conteudo-fundo{
+    padding:20px;
+    background-color: #fff;
 }
 input[type=text],input[type=password], select {
     width: 100%;
@@ -85,7 +108,9 @@ input[type=text],input[type=password], select {
     border-left: 1px solid #cdcdcd;
     border-bottom: 1px solid #cdcdcd;
     padding:2px 5px;
-    background-color: #fff;
+}
+.center{
+    text-align: center;
 }
 .mb-2{
     width: 100%;
@@ -137,10 +162,40 @@ input[type=text],input[type=password], select {
     padding: 10px;
 }
 
+#menu-lateral{
+    width: 15%;
+    float: left;
+    border-radius: 3px;
+    border:1px solid #000;
+}
+#menu-title{
+    background-color: #161616;
+    color:#fff;
+    padding: 5px;
+}
+
+#menu-conteudo{
+    padding: 5px;
+    background-color: #fff;
+}
+.span-menu{
+    position: relative;
+    left:3px;
+    top:6px;
+}
+.img-menu{
+    width: 30px;
+    margin: 5px;
+}
+#conteudo-right{
+    width: 84%;
+    float: right;
+    background-color: #fff;
+}
 
 .login {
     width: 500px;
-    margin: 150px auto;
+    margin: 50px auto;
     color: #000;
 }
 

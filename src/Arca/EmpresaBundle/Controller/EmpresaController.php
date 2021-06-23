@@ -3,7 +3,10 @@
 namespace Arca\EmpresaBundle\Controller;
 
 use Arca\EmpresaBundle\Entity\Empresa;
+use Arca\EmpresaBundle\Form\SearchType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 
@@ -17,16 +20,31 @@ class EmpresaController extends Controller
      * Lists all empresa entities.
      *
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
-        $em = $this->getDoctrine()->getManager();
+        $search = new Empresa();
+        $search->setTitulo($search->getTitulo());
 
-        $empresas = $em->getRepository('EmpresaBundle:Empresa')->findAll();
+        $form = $this->createForm(SearchType::class, $search);
+        $form->handleRequest($request);
+
+        $em = $this->getDoctrine()->getManager();
+        if ($form->isValid()) {
+            $empresas = $em->getRepository('EmpresaBundle:Empresa')
+                           ->findSearch($search->getTitulo());
+        }else{
+            $empresas = $em->getRepository('EmpresaBundle:Empresa')->findAll();
+        }
+
+
 
         return $this->render('empresa/index.html.twig', array(
+            'form'     => $form->createView(),
             'empresas' => $empresas,
         ));
     }
+
+
 
     /**
      * Creates a new empresa entity.
@@ -58,9 +76,10 @@ class EmpresaController extends Controller
      */
     public function showAction(Empresa $empresa)
     {
-        return $this->render('empresa/show.html.twig', array(
-            'empresa' => $empresa
-        ));
+        $data = array('saida' => $this->showTable($empresa));
+        $response = new JsonResponse($data);
+
+        return $response;
     }
 
     /**
@@ -94,6 +113,36 @@ class EmpresaController extends Controller
             $em->flush();
 
         return $this->redirectToRoute('empresa_index');
+    }
+
+    private function showTable(Empresa $empresa){
+        $html = '<table style="width: 100%; font-size: 12px;">';
+        $html .= '  <tr>';
+        $html .= '    <td width="50px"><b>ID</b></td>';
+        $html .= '    <td>'.$empresa->getId().'</td>';
+        $html .= '  </tr>';
+        $html .= '  <tr>';
+        $html .= '    <td><b>Titulo</b></td>';
+        $html .= '    <td>'.$empresa->getTitulo().'</td>';
+        $html .= '  </tr>';
+        $html .= '  <tr>';
+        $html .= '    <td><b>Telefone</b></td>';
+        $html .= '    <td>'.$empresa->getTelefone().'</td>';
+        $html .= '  </tr>';
+        $html .= '  <tr>';
+        $html .= '    <td><b>Endereço</b></td>';
+        $html .= '    <td>'.$empresa->getEndereco().' - '.$empresa->getCidade().'/'.$empresa->getEstado().' CEP: '.$empresa->getCep().'</td>';
+        $html .= '  </tr>';
+        $html .= '  <tr>';
+        $html .= '    <td><b>Descrição</b></td>';
+        $html .= '    <td>'.$empresa->getDescricao().'</td>';
+        $html .= '  </tr>';
+        $html .= '  <tr>';
+        $html .= '    <td><b>Categoria</b></td>';
+        $html .= '    <td></td>';
+        $html .= '  </tr>';
+        $html .= ' </table>';
+        return $html;
     }
 
 }

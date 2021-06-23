@@ -16,6 +16,7 @@ class LoadCategoria implements FixtureInterface
 
     public function load(ObjectManager $manager)
     {
+
         $cat1 = new Categoria();
         $cat1->setCategoria('Auto');
         $manager->persist($cat1);

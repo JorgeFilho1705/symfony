@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}Arca - Teste{% endblock %}</title>
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="{{ asset('css/colorbox.css')}}" />
+    {% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+</head>
+<body>
+  {% block header %}{% endblock %}
+
+  {% block menu %}
+    <div id="menu-lateral">
+        <div id="menu-title">
+            Menu
+        </div>
+        <div id="menu-conteudo">
+            <table>
+                <tr>
+                    <td><a href="{{ path('empresa_index') }}"><img src="{{ asset('images/empresa-icon.png') }}" alt="Listagem de Empresa" class="img-menu"><span class="span-menu">Empresa</span></a></td>
+                </tr>
+                <tr>
+                    <td><a href="{{ path('user_index') }}"><img src="{{ asset('images/user-icon.png') }}" alt="Listagem de Usuário" class="img-menu"><span class="span-menu">Usuário</span></a></td>
+                </tr>
+                <tr>
+                    <td><a href="{{ path('logout') }}"><img src="{{ asset('images/login-icon.png') }}" alt="Sair" class="img-menu"><span class="span-menu">Sair</span></a></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+  {% endblock %}
+
+  {% block content %}{% endblock %}
+  {% block javascripts %}
+      <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+      <script src="{{ asset('js/jquery.colorbox.js') }}"></script>
+  {% endblock %}
+</body>
+</html>

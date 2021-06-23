@@ -1,26 +1,24 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<div id="container">
-    <div id="header">
-        <div id="title">Editar Empresa</div>
-        <div id="buttonAction">
-            <a href="{{ path('empresa_index') }}"><img src="{{ asset('images/back-icon.png') }}" class="action_icon" title="Voltar"/></a>
-        </div>
+
+    <div id="menu">
+        <div id="title">Alterar Empresa</div>
     </div>
     <div id="conteudo">
-
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-            <table>
-                <tr>
-                    <td>
-                        <input type="submit" value="editar" class="btn"/>
-                        {{ form_end(edit_form) }}
-                    </td>
-                    <td><a href="{{ path('empresa_index') }}" class="btn">voltar</a></td>
-                </tr>
-            </table>
+        <div id="conteudo-fundo">
+        {{ form_start(edit_form) }}
+            {{ form_widget(edit_form) }}
+                <table>
+                    <tr>
+                        <td>
+                            <input type="submit" value="editar" class="btn"/>
+                            {{ form_end(edit_form) }}
+                        </td>
+                        <td><a href="{{ path('empresa_index') }}" class="btn">voltar</a></td>
+                    </tr>
+                </table>
+        </div>
     </div>
-</div>
+
 {% endblock %}

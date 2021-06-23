@@ -5,28 +5,35 @@
 {% endblock %}
 
 {% block body %}
-    <section class="login">
-        <article>
+<div id="logo"></div>
+<div id="container">
+    <div id="menu">
+        <div id="title"></div>
+        <div id="buttonAction">
+            <a href="{{ path('index') }}"><img src="{{ asset('images/back-icon.png') }}" title="voltar" class="action_icon"></a>
+        </div>
+    </div>
 
-            {% if error %}
-                <div class="error">{{ error.message | trans}}</div>
-            {% endif %}
+        <section class="login">
+            <article>
+                {% if error %}
+                    <div class="error">{{ error.message | trans}}</div>
+                {% endif %}
 
-            <form action="{{ path('login_check') }}" method="post">
+                <form action="{{ path('login_check') }}" method="post">
 
-                <label for="username">Usuário:</label>
-                <input type="text" id="username" name="_username" value="{{ last_username }}" />
+                    <label for="username">Usuário:</label>
+                    <input type="text" id="username" name="_username" value="{{ last_username }}" />
 
-                <label for="password">Senha:</label>
-                <input type="password" id="password" name="_password" />
-                <hr />
-                Lembrar de mim <input type="checkbox" name="_remember_me" />
-                <hr />
+                    <label for="password">Senha:</label>
+                    <input type="password" id="password" name="_password" />
+                    <hr />
+                    Lembrar de mim <input type="checkbox" name="_remember_me" />
+                    <hr />
+                    <button type="submit" class="btn btn-primary pull-left">Login</button>
+                </form>
+            </article>
+        </section>
 
-                <button type="submit" class="btn btn-primary pull-left">Login</button>
-
-            </form>
-
-        </article>
-    </section>
+</div>
 {% endblock %}

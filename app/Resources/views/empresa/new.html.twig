@@ -1,18 +1,16 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<div id="container">
-    <div id="header">
+    <div id="menu">
         <div id="title">Cadastrar Empresa</div>
-        <div id="buttonAction">
-            <a href="{{ path('empresa_index') }}"><img src="{{ asset('images/back-icon.png') }}" class="action_icon" title="Voltar"/></a>
-        </div>
     </div>
     <div id="conteudo">
-
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Salvar" class="btn"/>
-        <td><a href="{{ path('empresa_index') }}" class="btn">voltar</a></td>
-    {{ form_end(form) }}
-{% endblock %}
+        <div id="conteudo-fundo">
+        {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <input type="submit" value="Salvar" class="btn"/>
+            <td><a href="{{ path('empresa_index') }}" class="btn">voltar</a></td>
+        {{ form_end(form) }}
+        </div>
+    </div>
+    {% endblock %}

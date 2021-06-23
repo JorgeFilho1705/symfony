@@ -1,66 +1,63 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<div id="container">
     <div id="header">
-        <div id="title">Empresas</div>
-        <div id="buttonAction">
-            <a href="{{ path('empresa_index') }}"><img src="{{ asset('images/back-icon.png') }}" class="action_icon" title="Voltar"/></a>
-        </div>
+
     </div>
     <div id="conteudo">
+        <div id="conteudo-fundo">
+            <table style="width:400px">
+                <tbody>
+                    <tr>
+                        <th style="width:100px">Id</th>
+                        <td>{{ empresa.id }}</td>
+                    </tr>
+                    <tr>
+                        <th>Titulo</th>
+                        <td>{{ empresa.titulo }}</td>
+                    </tr>
+                    <tr>
+                        <th>Categoria</th>
+                        <td>
+                          {% for categoria in empresa.categorias %}
+                                {{ categoria.categoria }}
+                          {% endfor %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Telefone</th>
+                        <td>{{ empresa.telefone }}</td>
+                    </tr>
+                    <tr>
+                        <th>Endereco</th>
+                        <td>{{ empresa.endereco }}</td>
+                    </tr>
+                    <tr>
+                        <th>Cep</th>
+                        <td>{{ empresa.cep }}</td>
+                    </tr>
+                    <tr>
+                        <th>Cidade</th>
+                        <td>{{ empresa.cidade }}</td>
+                    </tr>
+                    <tr>
+                        <th>Estado</th>
+                        <td>{{ empresa.estado }}</td>
+                    </tr>
+                    <tr>
+                        <th>Descricao</th>
+                        <td>{{ empresa.descricao }}</td>
+                    </tr>
 
-    <table style="width:400px">
-        <tbody>
-            <tr>
-                <th style="width:100px">Id</th>
-                <td>{{ empresa.id }}</td>
-            </tr>
-            <tr>
-                <th>Titulo</th>
-                <td>{{ empresa.titulo }}</td>
-            </tr>
-            <tr>
-                <th>Categoria</th>
-                <td>
-                  {% for categoria in empresa.categorias %}
-                        {{ categoria.categoria }}
-                  {% endfor %}
-                </td>
-            </tr>
-            <tr>
-                <th>Telefone</th>
-                <td>{{ empresa.telefone }}</td>
-            </tr>
-            <tr>
-                <th>Endereco</th>
-                <td>{{ empresa.endereco }}</td>
-            </tr>
-            <tr>
-                <th>Cep</th>
-                <td>{{ empresa.cep }}</td>
-            </tr>
-            <tr>
-                <th>Cidade</th>
-                <td>{{ empresa.cidade }}</td>
-            </tr>
-            <tr>
-                <th>Estado</th>
-                <td>{{ empresa.estado }}</td>
-            </tr>
-            <tr>
-                <th>Descricao</th>
-                <td>{{ empresa.descricao }}</td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table>
-        <tr>
-            <td><a href="{{ path('empresa_index') }}" class="btn">voltar</a></td>
-            <td><a href="{{ path('empresa_edit', { 'id': empresa.id }) }}" class="btn">editar</a></td>
-        </tr>
-    </table>
-
+                </tbody>
+            </table>
+            <table>
+                <tr>
+                    <td><a href="{{ path('empresa_index') }}" class="btn">voltar</a></td>
+                    <td><a href="{{ path('empresa_edit', { 'id': empresa.id }) }}" class="btn">editar</a></td>
+                </tr>
+            </table>
+        </div>
     </div>
+</div>
 {% endblock %}

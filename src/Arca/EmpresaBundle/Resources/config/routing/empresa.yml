@@ -1,12 +1,13 @@
 empresa_index:
     path:     /
     defaults: { _controller: "EmpresaBundle:Empresa:index" }
-    methods:  GET
+    methods:  [GET, POST]
 
 empresa_show:
     path:     /{id}/show
     defaults: { _controller: "EmpresaBundle:Empresa:show" }
-    methods:  GET
+    requirements:
+        format: json
 
 empresa_new:
     path:     /new
