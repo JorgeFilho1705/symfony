@@ -32,7 +32,7 @@
             <table class="table table-hover" id="tables">
                 <thead>
                     <tr>
-                        <th>Id</th>
+                        <th style="width:1px;"></th>
                         <th>Titulo</th>
                         <th>Telefone</th>
                         <th>Endereco</th>
@@ -44,7 +44,11 @@
                 <tbody>
                 {% for empresa in empresas %}
                     <tr id="tr_{{ empresa.id }}">
-                        <td class="center"><a href="javascript:;" onclick="ExibeDetalhes('{{ path('empresa_show', { 'id': empresa.id }) }}', '{{ empresa.id }}');">{{ empresa.id }}</a></td>
+                        <td class="center">
+                            <a href="javascript:;" onclick="ExibeDetalhes('{{ path('empresa_show', { 'id': empresa.id }) }}', '{{ empresa.id }}');">
+                                <img src="../images/empresa/{% if empresa.imagem %}{{ asset(empresa.imagem) }}{% else %}{{ asset('logo_indisponivel.jpg') }}{% endif %}" class="logo_empresa" title="mais detalhes">
+                            </a>
+                        </td>
                         <td>{{ empresa.titulo }}</td>
                         <td>{{ empresa.telefone }}</td>
                         <td>{{ empresa.endereco }}</td>
@@ -64,7 +68,6 @@
 
 {% block javascripts %}
     {{ parent() }}
-
     <script src="{{ asset('js/empresa/index.js') }}"></script>
 {% endblock %}
 

@@ -6,6 +6,7 @@ use Arca\EmpresaBundle\Entity\Categoria;
 use Arca\EmpresaBundle\Entity\Empresa;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -21,6 +22,11 @@ class EmpresaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('titulo')
+            ->add('imagem', FileType::class, array(
+                'label' => 'Logotipo',
+                'required' => false,
+                'data_class' => null
+            ))
             ->add('categorias', EntityType::class, [
                 'class' => Categoria::class,
                 'query_builder' => function (EntityRepository $er) {
@@ -31,11 +37,22 @@ class EmpresaType extends AbstractType
                 'multiple' => true,
                 'expanded' => true,
             ])
-            ->add('telefone')
-            ->add('endereco')
-            ->add('cep',  TextType::class, array(
-                'label' => 'CEP')
+            ->add('telefone',  TextType::class, array(
+                'label' => 'Telefone',
+                'attr' => array(
+                              'placeholder' => '(99) 9999-9999',
+                          )
+                )
             )
+            ->add('cep',  TextType::class, array(
+                'label' => 'CEP',
+                    'attr' => array(
+                        'placeholder' => '99999-999',
+                        'onblur' => 'buscaCEP(this.value)'
+                    )
+                )
+            )
+            ->add('endereco')
             ->add('cidade')
             ->add('estado', ChoiceType::class, [
                 'choices'  => $this->GetEstados(),

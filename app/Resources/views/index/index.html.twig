@@ -21,15 +21,22 @@
 
         <div id="resultados">
             {% for empresa in empresas %}
-                <div class="result">
+                <ul class="result">
                     <fieldset>
-                        <a href="{{ path('search', { 'id': empresa.id }) }}" class="titulo">{{ empresa.titulo }}</a>
-                        <div class="descricao">
-                            <span>{{ empresa.endereco }} - {{ empresa.cidade }}/{{ empresa.estado }}</span><br>
-                            <span>{{ empresa.descricao }}</span>
-                        </div>
+                        <table>
+                            <tr>
+                                <td><img src="./images/empresa/{% if empresa.imagem %}{{ asset(empresa.imagem) }}{% else %}{{ asset('logo_indisponivel.jpg') }}{% endif %}" class="logo_index"></td>
+                                <td>
+                                    <div class="descricao">
+                                        <a href="{{ path('search', { 'id': empresa.id }) }}" class="titulo">{{ empresa.titulo }}</a>
+                                        <span>{{ empresa.endereco }} - {{ empresa.cidade }}/{{ empresa.estado }}</span><br>
+                                      <span>{{ empresa.descricao }}</span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
                     </fieldset>
-                </div>
+                </ul>
             {% endfor %}
         </div>
     </div>

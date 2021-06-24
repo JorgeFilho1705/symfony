@@ -8,6 +8,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\Session;
+
 
 
 /**
@@ -55,6 +57,8 @@ class EmpresaController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($empresa);
             $em->flush();
@@ -89,15 +93,32 @@ class EmpresaController extends Controller
      */
     public function editAction(Request $request, Empresa $empresa)
     {
+        $session = new Session();
+
         $editForm = $this->createForm('Arca\EmpresaBundle\Form\EmpresaType', $empresa);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $imagem = $empresa->getImagem();
+            if($imagem != NULL) {
+                $caminho = './images/empresa/';
+                @unlink($caminho.$session->get('imagem'));
+                $nome_imagem = time().'.jpg';
+                $novaImagem = $caminho.$nome_imagem;
+                move_uploaded_file($imagem, $novaImagem);
+                $empresa->setImagem($nome_imagem);
+            }else{
+                $empresa->setImagem($session->get('imagem'));
+            }
+
             $this->getDoctrine()->getManager()->flush();
             return $this->render('close.html.twig', array(
                 'tela' => 'Empresa',
                 'rota' => 'empresa_index'
             ));
+            $session->set('imagem', NULL);
+        }else{
+            $session->set('imagem', $empresa->getImagem());
         }
         return $this->render('empresa/edit.html.twig', array(
             'empresa' => $empresa,

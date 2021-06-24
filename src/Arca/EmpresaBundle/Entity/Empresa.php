@@ -31,6 +31,11 @@ class Empresa
     private $titulo;
 
     /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    public $imagem;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="telefone", type="string", length=16)
@@ -84,6 +89,9 @@ class Empresa
     public function __construct()
     {
         $this->categorias = new ArrayCollection();
+    }
+    public function getImagemBackup(){
+        return $this->getImagem();
     }
     /**
      * Get id
@@ -262,6 +270,23 @@ class Empresa
     {
         return $this->descricao;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getImagem()
+    {
+        return $this->imagem;
+    }
+
+    /**
+     * @param mixed $imagem
+     */
+    public function setImagem($imagem)
+    {
+        $this->imagem = $imagem;
+    }
+
     public function __toString()
     {
         return (string) $this->getTitulo();

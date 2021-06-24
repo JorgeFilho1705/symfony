@@ -13,11 +13,13 @@ class EmpresaRepository extends \Doctrine\ORM\EntityRepository
     public function findSearch($search)
     {
         return $this->createQueryBuilder('e')
-            ->andWhere('e.titulo LIKE :titulo OR e.endereco LIKE :endereco OR e.cep LIKE :cep OR e.cidade LIKE :cidade')
+            ->join('e.categorias', 'cat')
+            ->andWhere('e.titulo LIKE :titulo OR e.endereco LIKE :endereco OR e.cep LIKE :cep OR e.cidade LIKE :cidade OR cat.categoria LIKE :categorias')
             ->setParameter('titulo', '%'.$search.'%')
             ->setParameter('endereco', '%'.$search.'%')
             ->setParameter('cidade', '%'.$search.'%')
             ->setParameter('cep', '%'.$search.'%')
+            ->setParameter('categorias', '%'.$search.'%')
             ->getQuery()
             ->execute();
     }
