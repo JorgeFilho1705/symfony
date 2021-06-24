@@ -4,18 +4,20 @@
 <div id="logo"></div>
 <div id="container">
     <div id="menu">
-        <div id="title">Listagem de Usuários</div>
+        <div id="title">
+            <img src="{{ asset('images/user-icon.png') }}" class="action_icon"/>
+            Listagem de Usuários
+        </div>
         <div id="buttonAction">
             <a href="{{ path('user_index') }}"><img src="{{ asset('images/reload-icon.png') }}" class="action_icon" title="Recarregar"/></a>
             <a href="{{ path('user_new') }}" class="iframe"><img src="{{ asset('images/add-icon.png') }}" class="action_icon" title="Nova Empresa"/></a>
         </div>
     </div>
     <div id="conteudo">
-        {% endblock %}
+{% endblock %}
 
-        {% block content %}
-
-        <div id="conteudo-right">
+{% block content %}
+       <div id="conteudo-right">
             <table class="table table-hover" id="tables">
                 <thead>
                     <tr>
@@ -23,7 +25,7 @@
                         <th>E-mail</th>
                         <th>Telefone</th>
                         <th>Data de Cadastro</th>
-                        <th>Status</th>
+                        <th style="width:1px;"></th>
                         <th style="width:1px;"></th>
                         <th style="width:1px;"></th>
                     </tr>
@@ -34,19 +36,23 @@
                         <td>{{ user.username }}</td>
                         <td>{{ user.email }}</td>
                         <td>{{ user.telefone }}</td>
-
-
-                        <td>{% if user.createdAt %}{{ user.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                        <td>{% if user.isActive %}Ativo{% else %}Inativo{% endif %}</td>
-                        <td class="center"><a href="{{ path('user_edit', { 'id': user.id }) }}" class="iframe"><img src="{{ asset('images/edit-icon.png') }}" class="action_icon" title="Editar Usuário"/></a></td>
-                        <td class="center"><a href="{{ path('user_delete', { 'id': user.id }) }}" onclick="return DeletarUsuario('{{ user.username }}');"><img src="{{ asset('images/delete-icon.png') }}" class="action_icon" title="Excluir Usuário"></a></td>
+                        <td>{% if user.createdAt %}{{ user.createdAt|date('d/m/Y') }}{% endif %}</td>
+                        <td class="center"><a href="javascript:;" onclick="AlteraStatus('{{ path('user_status', { 'id': user.id }) }}', '{{ user.id }}', '{{ user.isActive }}');"><img src="{% if user.isActive %}{{ asset('images/ativo-icon.png') }}{% else %}{{ asset('images/inativo-icon.png') }}{% endif %}" class="action_icon" id="img_{{ user.id }}" title="Usuário {% if user.isActive %}ativo{% else %}inativo{% endif %} &#013;Clique para alterar o status"></a></td>
+                        <!--<td class="center"><a href="{{ path('user_edit', { 'id': user.id }) }}" class="iframe"><img src="{{ asset('images/edit-icon.png') }}" class="action_icon" title="Editar Usuário"/></a></td>-->
+                        <td class="center">
+                            {% if user.username != 'administrador' %}
+                                <a href="{{ path('user_delete', { 'id': user.id }) }}" onclick="return DeletarUsuario('{{ user.username }}');"><img src="{{ asset('images/delete-icon.png') }}" class="action_icon" title="Excluir Usuário"></a>
+                            {% else %}
+                                --
+                            {% endif %}
+                            </td>
                     </tr>
                 {% endfor %}
                 </tbody>
             </table>
+       </div>
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
-
     <script src="{{ asset('js/user/index.js') }}"></script>
 {% endblock %}

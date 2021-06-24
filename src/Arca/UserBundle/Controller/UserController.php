@@ -4,6 +4,7 @@ namespace Arca\UserBundle\Controller;
 
 use Arca\UserBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -37,12 +38,19 @@ class UserController extends Controller
         $form = $this->createForm('Arca\UserBundle\Form\UserType', $user);
         $form->handleRequest($request);
 
+
         if ($form->isSubmitted() && $form->isValid()) {
+            $user->setRoles($user->getRoles());
+            $user->setPassword($this->encodePassword($user, $user->getPassword()));
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
 
-            return $this->redirectToRoute('user_show', array('id' => $user->getId()));
+            return $this->render('close.html.twig', array(
+                'tela' => 'Usuário',
+                'rota' => 'user_index'
+            ));
         }
 
         return $this->render('user/new.html.twig', array(
@@ -76,15 +84,18 @@ class UserController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+            //$user->setPassword($this->encodePassword($user, $user->getPassword()));
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('user_edit', array('id' => $user->getId()));
+            return $this->render('close.html.twig', array(
+                'tela' => 'Usuário',
+                'rota' => 'user_index'
+            ));
         }
 
         return $this->render('user/edit.html.twig', array(
             'user' => $user,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+            'edit_form' => $editForm->createView()
         ));
     }
 
@@ -94,15 +105,9 @@ class UserController extends Controller
      */
     public function deleteAction(Request $request, User $user)
     {
-        $form = $this->createDeleteForm($user);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($user);
-            $em->flush();
-        }
-
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($user);
+        $em->flush();
         return $this->redirectToRoute('user_index');
     }
 
@@ -121,4 +126,44 @@ class UserController extends Controller
             ->getForm()
         ;
     }
+    private function encodePassword(User $user, $plainPassword)
+    {
+        $encoder = $this->container->get('security.encoder_factory')
+            ->getEncoder($user)
+        ;
+
+        return $encoder->encodePassword($plainPassword, $user->getSalt());
+    }
+    public function statusAction(User $user)
+    {
+        $status = (($user->getIsActive() == 0) ? 1 : 0);
+        $user->setIsActive($status);
+        $this->getDoctrine()->getManager()->flush();
+
+        $data = array('status' => $status);
+        $response = new JsonResponse($data);
+
+        return $response;
+    }
+
+
+
+   /* public function statusAction(User $user)
+    {
+        $status = (($user->getIsActive() == 0) ? 1 : 0);
+        $user->setIsActive($status);
+        $this->getDoctrine()->getManager()->flush();
+
+        $em = $this->getDoctrine()->getManager();
+
+        $users = $em->getRepository('UserBundle:User')->findAll();
+
+        $contents = $this->renderView('user/index.html.twig', array(
+            'users' => $users
+        ));
+        $data = array('contents' => $contents);
+        $response = new JsonResponse($data);
+        return $response;
+    } */
+
 }

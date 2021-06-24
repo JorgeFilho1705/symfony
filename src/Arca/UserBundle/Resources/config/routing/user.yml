@@ -21,4 +21,10 @@ user_edit:
 user_delete:
     path:     /{id}/delete
     defaults: { _controller: "UserBundle:User:delete" }
-    methods:  DELETE
+    methods:  GET
+
+user_status:
+    path:     /{id}/status
+    defaults: { _controller: "UserBundle:User:status" }
+    requirements:
+        format: json

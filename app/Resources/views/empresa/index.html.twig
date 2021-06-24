@@ -4,7 +4,10 @@
     <div id="logo"></div>
     <div id="container">
         <div id="menu">
-            <div id="title">Listagem das Empresas</div>
+            <div id="title">
+                <img src="{{ asset('images/empresa-icon.png') }}" class="action_icon"/>
+                Listagem das Empresas
+            </div>
             <div id="buttonAction">
                 <a href="javascript:;" onclick="abreFiltro();"><img src="{{ asset('images/search-icon.png') }}" class="action_icon" title="Abrir/Fechar Filtro"/></a>
                 <a href="{{ path('empresa_index') }}"><img src="{{ asset('images/reload-icon.png') }}" class="action_icon" title="Recarregar"/></a>
@@ -41,7 +44,7 @@
                 <tbody>
                 {% for empresa in empresas %}
                     <tr id="tr_{{ empresa.id }}">
-                        <td class="center"><a href="javascript:;" onclick="aButtonPressed('{{ path('empresa_show', { 'id': empresa.id }) }}', '{{ empresa.id }}');">{{ empresa.id }}</a></td>
+                        <td class="center"><a href="javascript:;" onclick="ExibeDetalhes('{{ path('empresa_show', { 'id': empresa.id }) }}', '{{ empresa.id }}');">{{ empresa.id }}</a></td>
                         <td>{{ empresa.titulo }}</td>
                         <td>{{ empresa.telefone }}</td>
                         <td>{{ empresa.endereco }}</td>

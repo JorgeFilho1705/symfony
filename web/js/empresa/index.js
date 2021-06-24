@@ -17,7 +17,7 @@ function abreFiltro(){
     }
 }
 
-function aButtonPressed(url, id){
+function ExibeDetalhes(url, id){
     if(document.getElementById("td_"+id).style.display == 'none') {
         $.post(url, null, function (data) {
             $("#tr_" + id).css('background-color', '#F0E68C');

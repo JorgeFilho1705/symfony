@@ -1,16 +1,18 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>User creation</h1>
-
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
-
-    <ul>
-        <li>
-            <a href="{{ path('user_index') }}">Back to the list</a>
-        </li>
-    </ul>
+    <div id="menu">
+        <div id="title">
+            <img src="{{ asset('images/user-icon.png') }}" class="action_icon"/>
+            Novo Usuário
+        </div>
+    </div>
+    <div id="conteudo">
+        <div id="conteudo-fundo">
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <input type="submit" value="Salvar Usuário" class="btn"/>
+            {{ form_end(form) }}
+        </div>
+    </div>
 {% endblock %}

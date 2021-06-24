@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        alert('{{ tela }} salva com sucesso!');
+        parent.window.location.href = "{{ path(rota) }}";
+    </script>
+{% endblock %}
+

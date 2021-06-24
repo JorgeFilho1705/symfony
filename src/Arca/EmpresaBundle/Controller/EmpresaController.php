@@ -36,8 +36,6 @@ class EmpresaController extends Controller
             $empresas = $em->getRepository('EmpresaBundle:Empresa')->findAll();
         }
 
-
-
         return $this->render('empresa/index.html.twig', array(
             'form'     => $form->createView(),
             'empresas' => $empresas,
@@ -61,7 +59,10 @@ class EmpresaController extends Controller
             $em->persist($empresa);
             $em->flush();
 
-            return $this->redirectToRoute('empresa_index');
+            return $this->render('close.html.twig', array(
+                'tela' => 'Empresa',
+                'rota' => 'empresa_index'
+            ));
         }
 
         return $this->render('empresa/new.html.twig', array(
@@ -93,7 +94,10 @@ class EmpresaController extends Controller
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-            return $this->redirectToRoute('empresa_index');
+            return $this->render('close.html.twig', array(
+                'tela' => 'Empresa',
+                'rota' => 'empresa_index'
+            ));
         }
         return $this->render('empresa/edit.html.twig', array(
             'empresa' => $empresa,
@@ -107,11 +111,9 @@ class EmpresaController extends Controller
      */
     public function deleteAction(Request $request, Empresa $empresa)
     {
-
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($empresa);
-            $em->flush();
-
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($empresa);
+        $em->flush();
         return $this->redirectToRoute('empresa_index');
     }
 

@@ -2,15 +2,17 @@
 
 {% block body %}
     <div id="menu">
-        <div id="title">Cadastrar Empresa</div>
+        <div id="title">
+            <img src="{{ asset('images/empresa-icon.png') }}" class="action_icon"/>
+            Nova Empresa
+        </div>
     </div>
     <div id="conteudo">
         <div id="conteudo-fundo">
         {{ form_start(form) }}
             {{ form_widget(form) }}
-            <input type="submit" value="Salvar" class="btn"/>
-            <td><a href="{{ path('empresa_index') }}" class="btn">voltar</a></td>
+            <input type="submit" value="Salvar Empresa" class="btn"/>
         {{ form_end(form) }}
         </div>
     </div>
-    {% endblock %}
+{% endblock %}

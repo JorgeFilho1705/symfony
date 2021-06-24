@@ -43,10 +43,6 @@ class User implements AdvancedUserInterface
      *
      * @ORM\Column(name="email", type="string", length=255)
      * @Assert\NotBlank(message="Digite o E-mail")
-     * @Assert\Regex(
-     *      pattern="/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$/",
-     *      message="Usar 1 Letra em Maiúsculo, 1 letra em Minúsculo e 1 número"
-     * )
      */
     private $email;
 
