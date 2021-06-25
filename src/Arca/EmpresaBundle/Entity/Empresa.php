@@ -291,7 +291,7 @@ class Empresa
 
     public function setCategorias($categoria)
     {
-        $this->categorias[] = $categoria;
+        $this->categorias = $categoria;
 
         return $this;
     }
