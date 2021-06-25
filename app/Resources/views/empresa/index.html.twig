@@ -1,20 +1,20 @@
 {% extends 'restrito.html.twig' %}
 
 {% block header %}
-    <div id="logo"></div>
-    <div id="container">
-        <div id="menu">
-            <div id="title">
-                <img src="{{ asset('images/empresa-icon.png') }}" class="action_icon"/>
-                Listagem das Empresas
-            </div>
-            <div id="buttonAction">
-                <a href="javascript:;" onclick="abreFiltro();"><img src="{{ asset('images/search-icon.png') }}" class="action_icon" title="Abrir/Fechar Filtro"/></a>
-                <a href="{{ path('empresa_index') }}"><img src="{{ asset('images/reload-icon.png') }}" class="action_icon" title="Recarregar"/></a>
-                <a href="{{ path('empresa_new') }}" class="iframe"><img src="{{ asset('images/add-icon.png') }}" class="action_icon" title="Nova Empresa"/></a>
-            </div>
+<div id="logo"></div>
+<div id="container">
+    <div id="menu">
+        <div id="title">
+            <img src="{{ asset('images/empresa-icon.png') }}" class="action_icon"/>
+            Listagem das Empresas
         </div>
-        <div id="conteudo">
+        <div id="buttonAction">
+            <a href="javascript:;" onclick="abreFiltro();"><img src="{{ asset('images/search-icon.png') }}" class="action_icon" title="Abrir/Fechar Filtro"/></a>
+            <a href="{{ path('empresa_index') }}"><img src="{{ asset('images/reload-icon.png') }}" class="action_icon" title="Recarregar"/></a>
+            <a href="{{ path('empresa_new') }}" class="iframe"><img src="{{ asset('images/add-icon.png') }}" class="action_icon" title="Nova Empresa"/></a>
+        </div>
+    </div>
+    <div id="conteudo">
 {% endblock %}
 
 {% block content %}

@@ -24,8 +24,8 @@ class UserRepository extends EntityRepository implements UserProviderInterface
             ->setParameter('username', $username)
             ->setParameter('email', $username)
             ->getQuery()
-            ->getOneOrNullResult() // retornar no objeto da classe
-            ;
+            ->getOneOrNullResult(); // retornar no objeto da classe
+
 
         // forma de chamar esta consulta
         //$em = $this->getDoctrine()->getManager();

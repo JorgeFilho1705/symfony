@@ -90,9 +90,6 @@ class Empresa
     {
         $this->categorias = new ArrayCollection();
     }
-    public function getImagemBackup(){
-        return $this->getImagem();
-    }
     /**
      * Get id
      *

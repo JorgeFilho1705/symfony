@@ -22,43 +22,44 @@ class EmpresaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('titulo')
-            ->add('imagem', FileType::class, array(
-                'label' => 'Logotipo',
-                'required' => false,
-                'data_class' => null
-            ))
-            ->add('categorias', EntityType::class, [
-                'class' => Categoria::class,
-                'query_builder' => function (EntityRepository $er) {
-                    return $er->createQueryBuilder('c')
-                        ->orderBy('c.categoria', 'ASC');
-                },
-                'choice_label' => 'categoria',
-                'multiple' => true,
-                'expanded' => true,
-            ])
-            ->add('telefone',  TextType::class, array(
-                'label' => 'Telefone',
-                'attr' => array(
-                              'placeholder' => '(99) 9999-9999',
-                          )
+                ->add('imagem', FileType::class, array(
+                    'label' => 'Logotipo',
+                    'required' => false,
+                    'data_class' => null
+                ))
+                ->add('categorias', EntityType::class, [
+                    'class' => Categoria::class,
+                    'query_builder' => function (EntityRepository $er) {
+                        return $er->createQueryBuilder('c')
+                            ->orderBy('c.categoria', 'ASC');
+                    },
+                    'choice_label' => 'categoria',
+                    'multiple' => true,
+                    'expanded' => true,
+                    ]
                 )
-            )
-            ->add('cep',  TextType::class, array(
-                'label' => 'CEP',
+                ->add('telefone',  TextType::class, array(
+                    'label' => 'Telefone',
                     'attr' => array(
-                        'placeholder' => '99999-999',
-                        'onblur' => 'buscaCEP(this.value)'
+                                  'placeholder' => '(99) 9999-9999',
+                              )
                     )
                 )
-            )
-            ->add('endereco')
-            ->add('cidade')
-            ->add('estado', ChoiceType::class, [
-                'choices'  => $this->GetEstados(),
-            ])
-            ->add('descricao', TextareaType::class);
- }
+                ->add('cep',  TextType::class, array(
+                    'label' => 'CEP',
+                        'attr' => array(
+                            'placeholder' => '99999-999',
+                            'onblur' => 'buscaCEP(this.value)'
+                        )
+                    )
+                )
+                ->add('endereco')
+                ->add('cidade')
+                ->add('estado', ChoiceType::class, [
+                    'choices'  => $this->GetEstados(),
+                ])
+                ->add('descricao', TextareaType::class);
+    }
     /**
      * {@inheritdoc}
      */
@@ -109,7 +110,6 @@ class EmpresaType extends AbstractType
             'SE' => 'Sergipe',
             'TO' => 'Tocantins',
         );
-
         return $estado;
     }
 }

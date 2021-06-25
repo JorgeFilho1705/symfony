@@ -20,9 +20,7 @@ class UserController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-
         $users = $em->getRepository('UserBundle:User')->findAll();
-
         return $this->render('user/index.html.twig', array(
             'users' => $users,
         ));
@@ -37,7 +35,6 @@ class UserController extends Controller
         $user = new User();
         $form = $this->createForm('Arca\UserBundle\Form\UserType', $user);
         $form->handleRequest($request);
-
 
         if ($form->isSubmitted() && $form->isValid()) {
             $user->setRoles($user->getRoles());
@@ -145,25 +142,4 @@ class UserController extends Controller
 
         return $response;
     }
-
-
-
-   /* public function statusAction(User $user)
-    {
-        $status = (($user->getIsActive() == 0) ? 1 : 0);
-        $user->setIsActive($status);
-        $this->getDoctrine()->getManager()->flush();
-
-        $em = $this->getDoctrine()->getManager();
-
-        $users = $em->getRepository('UserBundle:User')->findAll();
-
-        $contents = $this->renderView('user/index.html.twig', array(
-            'users' => $users
-        ));
-        $data = array('contents' => $contents);
-        $response = new JsonResponse($data);
-        return $response;
-    } */
-
 }

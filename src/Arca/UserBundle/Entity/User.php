@@ -100,7 +100,6 @@ class User implements AdvancedUserInterface
     public function setUsername($username)
     {
         $this->username = $username;
-
         return $this;
     }
 
@@ -124,7 +123,6 @@ class User implements AdvancedUserInterface
     public function setEmail($email)
     {
         $this->email = $email;
-
         return $this;
     }
 
@@ -165,7 +163,6 @@ class User implements AdvancedUserInterface
     public function setPassword($password)
     {
         $this->password = $password;
-
         return $this;
     }
 
@@ -189,7 +186,6 @@ class User implements AdvancedUserInterface
     public function setRoles($roles)
     {
         $this->roles = $roles;
-
         return $this;
     }
 
@@ -216,7 +212,6 @@ class User implements AdvancedUserInterface
     public function setIsActive($isActive)
     {
         $this->isActive = $isActive;
-
         return $this;
     }
 
@@ -275,9 +270,7 @@ class User implements AdvancedUserInterface
     public function setPlainPassword($plainPassword)
     {
         $this->plainPassword = $plainPassword;
-
         $this->setPassword(null);
-
         //return $this;
     }
 }

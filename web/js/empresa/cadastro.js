@@ -4,7 +4,6 @@ $(document).ready(function(){
 });
 
 function buscaCEP(cep){
-
     var cep = cep.replace(/\D/g, '');
     if (cep != "") {
         var validacep = /^[0-9]{8}$/;

@@ -3,9 +3,7 @@
 namespace Arca\EmpresaBundle\Controller;
 
 use Arca\EmpresaBundle\Entity\Empresa;
-use Arca\EmpresaBundle\Form\SearchType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
@@ -46,6 +44,16 @@ class EmpresaController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+
+            $imagem = $empresa->getImagem();
+            if($imagem != NULL) {
+                $caminho = './images/empresa/';
+                $nome_imagem = time().'.jpg';
+                $novaImagem = $caminho.$nome_imagem;
+                move_uploaded_file($imagem, $novaImagem);
+                $empresa->setImagem($nome_imagem);
+            }
+
             $em->persist($empresa);
             $em->flush();
 

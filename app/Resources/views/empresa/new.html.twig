@@ -1,20 +1,20 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div id="menu">
-        <div id="title">
-            <img src="{{ asset('images/empresa-icon.png') }}" class="action_icon"/>
-            Nova Empresa
-        </div>
+<div id="menu">
+    <div id="title">
+        <img src="{{ asset('images/empresa-icon.png') }}" class="action_icon"/>
+        Nova Empresa
     </div>
-    <div id="conteudo">
-        <div id="conteudo-fundo">
-        {{ form_start(form) }}
-            {{ form_widget(form) }}
-            <input type="submit" value="Salvar Empresa" class="btn"/>
-        {{ form_end(form) }}
-        </div>
+</div>
+<div id="conteudo">
+    <div id="conteudo-fundo">
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <input type="submit" value="Salvar Empresa" class="btn"/>
+    {{ form_end(form) }}
     </div>
+</div>
 {% endblock %}
 
 {% block javascripts %}

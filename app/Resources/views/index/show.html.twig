@@ -11,30 +11,27 @@
     </div>
     <div id="conteudo">
         <div id="resultados">
-                <div class="result">
-                    <fieldset>
-                        <table>
-                            <tr>
-                                <td><img src="../images/empresa/{% if empresa.imagem %}{{ asset(empresa.imagem) }}{% else %}{{ asset('logo_indisponivel.jpg') }}{% endif %}" class="logo_index2"></td>
-                                <td style="vertical-align: top">
-                                    <div class="descricao">
-                                        <h4>{{ empresa.titulo }}</h4>
-                                        <span><b>Telefone: </b>{{ empresa.telefone }}</span><br>
-                                        <span><b>Endereço: </b>{{ empresa.endereco }} - {{ empresa.cidade }}/{{ empresa.estado }} - CEP {{ empresa.cep }}</span><br>
-                                        <span><b>Descrição: </b>{{ empresa.descricao }}</span></br>
-                                        <span><b>Categoria: </b>
-                                            {% for categoria in empresa.categorias %}
-                                                {{ categoria.categoria }}
-                                            {% endfor %}
-                                        </span>
-                                    </div>
-                                    <p style="top:20px;position: relative"><a href="{{ path('index') }}" class="btn">voltar</a></p>
-                                </td>
-                            </tr>
-                        </table>
-                    </fieldset>
-                </div>
-
+            <div class="result">
+                <table>
+                    <tr>
+                        <td><img src="../images/empresa/{% if empresa.imagem %}{{ asset(empresa.imagem) }}{% else %}{{ asset('logo_indisponivel.jpg') }}{% endif %}" class="logo_index2"></td>
+                        <td style="vertical-align: top">
+                            <div class="descricao">
+                                <h4>{{ empresa.titulo }}</h4>
+                                <span><b>Telefone: </b>{{ empresa.telefone }}</span><br>
+                                <span><b>Endereço: </b>{{ empresa.endereco }} - {{ empresa.cidade }}/{{ empresa.estado }} - CEP {{ empresa.cep }}</span><br>
+                                <span><b>Descrição: </b>{{ empresa.descricao }}</span></br>
+                                <span><b>Categoria: </b>
+                                    {% for categoria in empresa.categorias %}
+                                        {{ categoria.categoria }}
+                                    {% endfor %}
+                                </span>
+                            </div>
+                            <p style="top:20px;position: relative"><a href="{{ path('index') }}" class="btn">voltar</a></p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
         </div>
     </div>
 </div>
