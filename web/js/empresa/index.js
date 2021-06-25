@@ -1,6 +1,20 @@
 $( document ).ready(function() {
-    $(".iframe").colorbox({iframe:true, width:"99%", height:"99%"});
+    $(".iframe").colorbox({iframe:true, width:"99%", height:"99%"})
+    $("#search").keypress(function(e) {
+        if (e.which == 13) {
+            Procurar();
+        }
+    });
 });
+
+function Procurar(){
+    search = $('#search').val();
+    url = '/empresa/'+search+'/search';
+
+    $.post(url, null, function (data) {
+        $("#Listempresas").html(data.saida);
+    });
+}
 
 function DeletarEmpresa(nome){
   if(confirm("Deseja realmente excluir empresa: "+nome+"?")){
@@ -12,6 +26,7 @@ function DeletarEmpresa(nome){
 function abreFiltro(){
     if(document.getElementById("idFiltro").style.display == 'none'){
         $("#idFiltro").show('10');
+        $("#search").focus();
     }else{
         $("#idFiltro").hide('10');
     }

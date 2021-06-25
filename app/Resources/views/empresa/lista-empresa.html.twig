@@ -1,0 +1,34 @@
+<table class="table table-hover" id="tables">
+    <thead>
+        <tr>
+            <th style="width:1px;"></th>
+            <th>Titulo</th>
+            <th>Telefone</th>
+            <th>Endereco</th>
+            <th>Cidade</th>
+            <th style="width:1px;"></th>
+            <th style="width:1px;"></th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for empresa in empresas %}
+        <tr id="tr_{{ empresa.id }}" onclick="ExibeDetalhes('{{ path('empresa_show', { 'id': empresa.id }) }}', '{{ empresa.id }}');" style="cursor:Pointer" title="ver + informações">
+            <td class="center">
+              <img src="../images/empresa/{% if empresa.imagem %}{{ asset(empresa.imagem) }}{% else %}{{ asset('logo_indisponivel.jpg') }}{% endif %}" class="logo_empresa" title="mais detalhes">
+            </td>
+            <td>{{ empresa.titulo }}</td>
+            <td>{{ empresa.telefone }}</td>
+            <td>{{ empresa.endereco }}</td>
+            <td>{{ empresa.cidade }}/{{ empresa.estado }}</td>
+            <td class="center"><a href="{{ path('empresa_edit', { 'id': empresa.id }) }}" class="iframe"><img src="{{ asset('images/edit-icon.png') }}" class="action_icon" title="Editar Empresa"/></a></td>
+            <td class="center"><a href="{{ path('empresa_delete', { 'id': empresa.id }) }}" onclick="return DeletarEmpresa('{{ empresa.titulo }}');"><img src="{{ asset('images/delete-icon.png') }}" class="action_icon" title="Excluir Empresa"></a></td>
+        </tr>
+        <tr>
+            <td colspan="7" id="td_{{ empresa.id }}" style="background-color: #FFFFC0; padding:10px; display: none"><div id="detalhes_{{ empresa.id }}"></div></td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+
+

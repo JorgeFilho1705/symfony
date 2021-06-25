@@ -9,6 +9,12 @@ empresa_show:
     requirements:
         format: json
 
+empresa_search:
+    path:     /{search}/search
+    defaults: { _controller: "EmpresaBundle:Empresa:search" }
+    requirements:
+        format: json
+
 empresa_new:
     path:     /new
     defaults: { _controller: "EmpresaBundle:Empresa:new" }

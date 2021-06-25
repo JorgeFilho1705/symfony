@@ -18,52 +18,27 @@
 {% endblock %}
 
 {% block content %}
-          <div id="conteudo-right">
-              <div id="idFiltro" style="display: none;">
-                  {{ form_start(form) }}
-                      <div class="form-group mb-2" align="center">
-                          {{ form_widget(form.titulo) }}
-                          <button type="submit" class="btn btn-pesquisar" style="border-radius: 0px 5px 5px 0px">Pesquisar</button>
-                      </div>
-                  {{ form_end(form) }}
-              </div>
-
-
-            <table class="table table-hover" id="tables">
-                <thead>
-                    <tr>
-                        <th style="width:1px;"></th>
-                        <th>Titulo</th>
-                        <th>Telefone</th>
-                        <th>Endereco</th>
-                        <th>Cidade</th>
-                        <th style="width:1px;"></th>
-                        <th style="width:1px;"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                {% for empresa in empresas %}
-                    <tr id="tr_{{ empresa.id }}">
-                        <td class="center">
-                            <a href="javascript:;" onclick="ExibeDetalhes('{{ path('empresa_show', { 'id': empresa.id }) }}', '{{ empresa.id }}');">
-                                <img src="../images/empresa/{% if empresa.imagem %}{{ asset(empresa.imagem) }}{% else %}{{ asset('logo_indisponivel.jpg') }}{% endif %}" class="logo_empresa" title="mais detalhes">
-                            </a>
-                        </td>
-                        <td>{{ empresa.titulo }}</td>
-                        <td>{{ empresa.telefone }}</td>
-                        <td>{{ empresa.endereco }}</td>
-                        <td>{{ empresa.cidade }}/{{ empresa.estado }}</td>
-                        <td class="center"><a href="{{ path('empresa_edit', { 'id': empresa.id }) }}" class="iframe"><img src="{{ asset('images/edit-icon.png') }}" class="action_icon" title="Editar Empresa"/></a></td>
-                        <td class="center"><a href="{{ path('empresa_delete', { 'id': empresa.id }) }}" onclick="return DeletarEmpresa('{{ empresa.titulo }}');"><img src="{{ asset('images/delete-icon.png') }}" class="action_icon" title="Excluir Empresa"></a></td>
-                    </tr>
-                    <tr>
-                        <td colspan="7" id="td_{{ empresa.id }}" style="background-color: #FFFFC0; padding:10px; display: none"><div id="detalhes_{{ empresa.id }}"></div></td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
+<div id="conteudo-right">
+      <div id="idFiltro" style="display: none;">
+          <div class="form-group mb-2" align="center">
+              <table>
+                  <tr>
+                      <td>
+                          <input type="text" name="search" id="search" size="80">
+                      </td>
+                      <td>
+                          <a href="javascript:;" onclick="Procurar('');" class="btn btn-pesquisar" style="border-radius: 0px 5px 5px 0px">Pesquisar</a>
+                          <a href="{{ path('empresa_index') }}" class="btn">Recarregar</a>
+                      </td>
+                  </tr>
+              </table>
           </div>
-        </div>
+      </div>
+      <div id="Listempresas">
+        {{ Listempresas| raw}}
+      </div>
+  </div>
+</div>
 {% endblock %}
 
 {% block javascripts %}
